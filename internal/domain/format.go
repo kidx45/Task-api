@@ -1,7 +1,8 @@
 package domain
 
+// Task : To set the format and structure of database
 type Task struct {
-	ID          int64  `json:"id"`
+	ID          string `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 }
