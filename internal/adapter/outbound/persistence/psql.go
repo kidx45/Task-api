@@ -5,10 +5,12 @@ import (
 	"log"
 	"task-api/internal/domain"
 	"task-api/internal/port/outbound"
-
+	"os"
+	"fmt"
 	"github.com/google/uuid"
 	//imported to use psql
 	_ "github.com/lib/pq"
+	"github.com/joho/godotenv"
 )
 
 type postgresRepo struct {
@@ -17,16 +19,29 @@ type postgresRepo struct {
 
 // ConnectToPostgres : To estblish a connection with our postgres database
 func ConnectToPostgres() *sql.DB {
-	location := "postgres://postgres:manyahle1234$@@localhost:5432/task_api?sslmode=disable"
+	
+	errs := godotenv.Load("cmd/.env")
+	if errs != nil {
+		log.Fatal("Error loading .env file")
+	}
+	
+	location := fmt.Sprintf(
+    	"postgres://%s:%s@%s:%s/%s?sslmode=disable",
+    	os.Getenv("DBUSER"),
+    	os.Getenv("DBPASS"),
+    	os.Getenv("DBHOST"),
+    	os.Getenv("DBPORT"),
+    	"task_api",
+	)
 
 	db, err := sql.Open("postgres", location)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	errs := db.Ping()
-	if errs != nil {
-		log.Fatal(errs)
+	pingerr := db.Ping()
+	if pingerr != nil {
+		log.Fatal(pingerr)
 	}
 	return db
 }

@@ -25,8 +25,8 @@ func ConnectToMysql() *sql.DB {
 	cfg := mysql.NewConfig()
 	cfg.User = os.Getenv("DBUSER")
 	cfg.Passwd = os.Getenv("DBPASS")
-	cfg.Net = "tcp"
-	cfg.Addr = "127.0.0.1:3306"
+	cfg.Net = os.Getenv("DBNET")
+	cfg.Addr = os.Getenv("DBADR")
 	cfg.DBName = "taskdb"
 	db, err := sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
@@ -105,4 +105,3 @@ func (r *mysqlRepo) Delete(id string) error {
 	_, errs := r.db.Exec(query, id)
 	return errs
 }
-

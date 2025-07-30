@@ -4,6 +4,9 @@ run:
 tidy:
 	go mod tidy
 
+lint:
+	golangci-lint run
+
 get-all-tasks:
 	curl http://localhost:8080/tasks
 
