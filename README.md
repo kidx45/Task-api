@@ -27,3 +27,10 @@ id CHAR(36) PRIMARY KEY,
 title VARCHAR(150) NOT NULL,
 description VARCHAR(300) NOT NULL
 );
+```
+For testing, you can add these samples to your database: <br>
+```sql
+INSERT INTO tasks (id,title,description) VALUES ('1161377b-7c47-45aa-b087-1a9b08423021','test1','testing123');
+INSERT INTO tasks (id,title,description) VALUES ('18fd5e4b-d137-477f-a499-06ef11859292','test2','testing456');
+INSERT INTO tasks (id,title,description) VALUES ('3ce5ceec-6c5a-11f0-9dac-68ecc56cca7d','test3','testing789');
+```
