@@ -1,14 +1,21 @@
+// @title Task API
+// @version 1.0
+// @description Task Manager
+// @host localhost:8080
+// @BasePath /
+
 package main
 
 import (
 	"bufio"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"os"
 	"strings"
 	httpy "task-api/internal/adapter/inbound/http"
 	"task-api/internal/adapter/outbound/persistence"
-	service "task-api/internal/application/service"
-	_ "github.com/go-sql-driver/mysql"
+	service "task-api/internal/application"
+	_ "task-api/docs"
 )
 
 func getdata(s string, r *bufio.Reader) (string, error) {
