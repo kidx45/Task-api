@@ -14,7 +14,7 @@ import (
 	"strings"
 	httpy "task-api/internal/adapter/inbound/http"
 	"task-api/internal/adapter/outbound/persistence"
-	service "task-api/internal/application"
+	service "task-api/internal/application/service"
 	_ "task-api/docs"
 )
 
